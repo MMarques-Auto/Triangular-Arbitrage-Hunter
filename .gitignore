@@ -1,0 +1,23 @@
+# --- Python Basics ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Ambientes Virtuais ---
+venv/
+env/
+.env
+
+# --- IDEs (Configurações locais que não interessam aos outros) ---
+.vscode/
+.idea/
+
+# --- Logs e Dados Temporários ---
+*.log
+*.csv
+
+# --- SEGURANÇA (CRÍTICO) ---
+# Nunca suba arquivos que contenham chaves ou tokens!
+keys.py
+secrets.py
+config.py
