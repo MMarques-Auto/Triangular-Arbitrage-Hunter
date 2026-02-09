@@ -16,8 +16,9 @@ env/
 *.log
 *.csv
 
-# --- SEGURANÇA (CRÍTICO) ---
+# --- SEGURANÇA ---
 # Nunca suba arquivos que contenham chaves ou tokens!
 keys.py
 secrets.py
 config.py
+.env

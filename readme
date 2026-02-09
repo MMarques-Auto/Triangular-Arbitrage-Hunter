@@ -1,50 +1,72 @@
-# Triangular Arbitrage Hunter
+# High-Frequency Triangular Arbitrage Bot (HFT)
 
-Bot developed in Python to identify triangular arbitrage opportunities (USDT -> A -> B -> USDT) on Binance.
+## [PT-BR] Visão Geral do Projeto
+Este projeto consiste em um bot de negociação de alta frequência (HFT) desenvolvido em Python, focado em identificar e explorar oportunidades de arbitragem triangular na exchange Binance. O sistema opera de forma assíncrona para monitorar centenas de pares de criptomoedas simultaneamente, calculando spreads de lucro em tempo real e validando a liquidez diretamente no Order Book para mitigar riscos de *slippage*.
 
-The project uses the `ccxt` library to map currency pairs and calculate spreads in real-time, seeking price inefficiencies in the Spot market.
+O diferencial deste software reside na sua capacidade de filtrar falsos positivos gerados por latência de *ticker*, executando uma auditoria de profundidade de mercado antes de sinalizar a oportunidade de execução.
 
-Bot desenvolvido em Python para identificar oportunidades de arbitragem triangular (USDT -> A -> B -> USDT) na Binance.
+### Funcionalidades Principais
+* **Varredura Assíncrona:** Utilização da biblioteca `asyncio` e `ccxt` para monitoramento não bloqueante de múltiplos mercados.
+* **Validação de Order Book:** Implementação de lógica para verificação de liquidez nas três pontas do triângulo (Entrada, Conversão, Saída), garantindo que o volume disponível suporta o capital alocado sem distorção significativa de preço.
+* **Gestão de Risco:** Filtros automatizados para exclusão de pares com spreads artificiais (carteiras suspensas) e moedas FIAT/Stablecoins de baixa liquidez.
+* **Arquitetura Modular:** Separação clara de responsabilidades entre Scanner, Lógica Matemática e Conexão com Exchange.
 
-O projeto utiliza a biblioteca `ccxt` para mapear pares de moedas e calcular spreads em tempo real, buscando ineficiências de preço no mercado Spot.
-
----
-
-## Features / Funcionalidades Atuais
-
-**Market Mapping:** Identifies all active pairs and constructs the relationship of possible triangles.
-* **Monitoring:** Checks prices for all three legs (buy, swap, sell) simultaneously.
-* **Profit Calculation:** Applies cross-rate conversion mathematics to validate if there is real profit in the operation.
-
-**Mapeamento de Mercado:** Identifica todos os pares ativos e constrói a relação de triângulos possíveis.
-* **Monitoramento:** Verifica os preços das três pontas (compra, troca, venda) simultaneamente.
-* **Cálculo de Lucro:** Aplica a matemática de conversão cruzada para validar se existe lucro real na operação.
+### Tecnologias Utilizadas
+* Python 3.12+
+* CCXT (CryptoCurrency eXchange Trading Library) - Async Support
+* Asyncio (Programação Concorrente)
+* Telegram API (Sistema de Alerta em Tempo Real)
 
 ---
 
-## Technologies / Tecnologias
+## [EN] Project Overview
+This project is a High-Frequency Trading (HFT) bot developed in Python, designed to identify and exploit triangular arbitrage opportunities on the Binance exchange. The system operates asynchronously to monitor hundreds of cryptocurrency pairs simultaneously, calculating profit spreads in real-time and validating liquidity directly against the Order Book to mitigate slippage risks.
 
-* Python 3.12
-* ccxt (Crypto Trading Library)
-* requests
+The key differentiator of this software is its ability to filter false positives caused by ticker latency, performing a market depth audit before signaling an execution opportunity.
+
+### Key Features
+* **Asynchronous Scanning:** Leveraging `asyncio` and `ccxt` for non-blocking monitoring of multiple markets.
+* **Order Book Validation:** Implementation of liquidity verification logic across all three legs of the triangle (Entry, Conversion, Exit), ensuring available volume supports the allocated capital without significant price impact.
+* **Risk Management:** Automated filters to exclude pairs with artificial spreads (suspended wallets) and low-liquidity FIAT/Stablecoins.
+* **Modular Architecture:** Clear separation of concerns between Scanner, Mathematical Logic, and Exchange Connection.
+
+### Tech Stack
+* Python 3.12+
+* CCXT (CryptoCurrency eXchange Trading Library) - Async Support
+* Asyncio (Concurrent Programming)
+* Telegram API (Real-time Alert System)
 
 ---
 
-## How to Run / Como Executar
+## Instalação / Installation
 
-1. **Install dependencies / Instale as dependências:**
-   ```bash
-   pip install ccxt requests
+1.  **Clone o repositório / Clone the repository:**
+    ```bash
+    git clone [https://github.com/seu-usuario/hft-arbitrage-bot.git](https://github.com/seu-usuario/hft-arbitrage-bot.git)
+    cd hft-arbitrage-bot
+    ```
 
-2. **Run / Execute**
-   python Watcher.py
+2.  **Ambiente Virtual / Virtual Environment:**
+    ```bash
+    python -m venv venv
+    # Windows
+    .\venv\Scripts\activate
+    # Linux/Mac
+    source venv/bin/activate
+    ```
 
-## Status
+3.  **Dependências / Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Project in development. Current focus on monitoring logic and mathematical validation of opportunities.
+4.  **Configuração / Configuration:**
+    * Renomeie `config_example.py` para `config.py`.
+    * Insira suas credenciais de API (Binance) e Tokens (Telegram).
+    * *Rename `config_example.py` to `config.py`.*
+    * *Insert your API credentials (Binance) and Tokens (Telegram).*
 
-Projeto em desenvolvimento. Foco atual na lógica de monitoramento e validação matemática das oportunidades.
+## Disclaimer
+Este software é para fins educacionais e experimentais. O mercado de criptomoedas envolve riscos financeiros significativos. O desenvolvedor não se responsabiliza por eventuais perdas financeiras decorrentes do uso deste código.
 
-___________________________________________________________
-
-Murilo Marques | Python Developer
+This software is for educational and experimental purposes. The cryptocurrency market involves significant financial risks. The developer is not responsible for any financial losses resulting from the use of this code.
