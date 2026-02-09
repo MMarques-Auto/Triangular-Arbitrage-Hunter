@@ -43,6 +43,6 @@ async def scanner(binance):
                             'par_venda': par_venda
                         })
 
-    print(f"[SCANNER] {len(triangulos)} rotas sujas prontas para operação.")
+    print(f"[SCANNER] {len(triangulos)} rotas prontas para operação.")
 
     return triangulos

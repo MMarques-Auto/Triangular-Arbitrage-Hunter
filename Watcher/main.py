@@ -4,6 +4,7 @@ import time
 from core import exchange, scanner, logic
 from utils import alerts
 import config
+import core.database as db
 
 async def main():
 
@@ -14,6 +15,9 @@ async def main():
 
     print(f"Monitorando {len(triangulos)} rotas | R${config.capital_atual}")
     alerts.enviar_telegram(f"🚀🚀 Bot iniciado | R${config.capital_atual} 🚀🚀")
+
+    db.get_connection()
+    db.init_db()
 
     while True:
         try:
@@ -56,7 +60,7 @@ async def main():
                                 resultado_real = logic.calc(config.capital_atual, p1_real, p2_real, p3_real)
                                 
                                 # Só aceita se AINDA DER LUCRO depois de ver o preço real
-                                if resultado_real['valido'] is True and resultado_real['lucro_pct'] > 0.3:
+                                if resultado_real['valido'] is True and resultado_real['lucro_pct'] > 0.0:
                                     
                                     msg = (
                                         f"💎 OPORTUNIDADE REAL CONFIRMADA (Auditada)!\n"
@@ -65,10 +69,12 @@ async def main():
                                         f"Lucro REAL: {resultado_real['lucro_pct']:.2f}% (Est. ${resultado_real['lucro_valor']:.2f})"
                                     )
                                     print(msg)
+                                    db.save(t,resultado['lucro_pct'], resultado_real, "REAL", "Confirmed Profit")
                                     alerts.enviar_telegram(msg)
 
                                 else:
                                     print(f"📉 Alarme Falso: Lucro sumiu no Order Book ({resultado_real['lucro_pct']:.2f}%)")
+                                    db.save(t, resultado['lucro_pct'], resultado_real, "FALSO", "Slippage no Order Book")
                             
                             else:
                                 print(f"❌ Sem liquidez na Saída ({par_venda})")
