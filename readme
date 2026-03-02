@@ -1,25 +1,12 @@
 # High-Frequency Triangular Arbitrage Bot (HFT)
 
-## [PT-BR] Visão Geral do Projeto
-Este projeto consiste em um bot de negociação de alta frequência (HFT) desenvolvido em Python, focado em identificar e explorar oportunidades de arbitragem triangular na exchange Binance. O sistema opera de forma assíncrona para monitorar centenas de pares de criptomoedas simultaneamente, calculando spreads de lucro em tempo real e validando a liquidez diretamente no Order Book para mitigar riscos de *slippage*.
+## ChangeLog
 
-O diferencial deste software reside na sua capacidade de filtrar falsos positivos gerados por latência de *ticker*, executando uma auditoria de profundidade de mercado antes de sinalizar a oportunidade de execução.
-
-### Funcionalidades Principais
-* **Varredura Assíncrona:** Utilização da biblioteca `asyncio` e `ccxt` para monitoramento não bloqueante de múltiplos mercados.
-* **Validação de Order Book:** Implementação de lógica para verificação de liquidez nas três pontas do triângulo (Entrada, Conversão, Saída), garantindo que o volume disponível suporta o capital alocado sem distorção significativa de preço.
-* **Gestão de Risco:** Filtros automatizados para exclusão de pares com spreads artificiais (carteiras suspensas) e moedas FIAT/Stablecoins de baixa liquidez.
-* **Arquitetura Modular:** Separação clara de responsabilidades entre Scanner, Lógica Matemática e Conexão com Exchange.
-
-### Tecnologias Utilizadas
-* Python 3.12+
-* CCXT (CryptoCurrency eXchange Trading Library) - Async Support
-* Asyncio (Programação Concorrente)
-* Telegram API (Sistema de Alerta em Tempo Real)
+Latest update: Added SQLite3 data persistence for historical arbitrage tracking.
 
 ---
 
-## [EN] Project Overview
+## Project Overview
 This project is a High-Frequency Trading (HFT) bot developed in Python, designed to identify and exploit triangular arbitrage opportunities on the Binance exchange. The system operates asynchronously to monitor hundreds of cryptocurrency pairs simultaneously, calculating profit spreads in real-time and validating liquidity directly against the Order Book to mitigate slippage risks.
 
 The key differentiator of this software is its ability to filter false positives caused by ticker latency, performing a market depth audit before signaling an execution opportunity.
@@ -38,15 +25,15 @@ The key differentiator of this software is its ability to filter false positives
 
 ---
 
-## Instalação / Installation
+## Installation
 
-1.  **Clone o repositório / Clone the repository:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/seu-usuario/hft-arbitrage-bot.git](https://github.com/seu-usuario/hft-arbitrage-bot.git)
     cd hft-arbitrage-bot
     ```
 
-2.  **Ambiente Virtual / Virtual Environment:**
+2.  **Virtual Environment:**
     ```bash
     python -m venv venv
     # Windows
@@ -55,18 +42,17 @@ The key differentiator of this software is its ability to filter false positives
     source venv/bin/activate
     ```
 
-3.  **Dependências / Dependencies:**
+3.  **Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **Configuração / Configuration:**
+4.  **Configuration:**
     * Renomeie `config_example.py` para `config.py`.
     * Insira suas credenciais de API (Binance) e Tokens (Telegram).
     * *Rename `config_example.py` to `config.py`.*
     * *Insert your API credentials (Binance) and Tokens (Telegram).*
 
 ## Disclaimer
-Este software é para fins educacionais e experimentais. O mercado de criptomoedas envolve riscos financeiros significativos. O desenvolvedor não se responsabiliza por eventuais perdas financeiras decorrentes do uso deste código.
 
 This software is for educational and experimental purposes. The cryptocurrency market involves significant financial risks. The developer is not responsible for any financial losses resulting from the use of this code.
