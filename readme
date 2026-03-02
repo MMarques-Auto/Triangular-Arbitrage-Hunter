@@ -1,7 +1,10 @@
-# High-Frequency Triangular Arbitrage Bot (HFT)
+# Triangular-Arbitrage-Hunter
+
+![Last Commit](https://img.shields.io/github/last-commit/MMarques-Auto/Triangular-Arbitrage-Hunter)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![License](https://img.shields.io/github/license/MMarques-Auto/Triangular-Arbitrage-Hunter)
 
 ## ChangeLog
-
 Latest update: Added SQLite3 data persistence for historical arbitrage tracking.
 
 ---
